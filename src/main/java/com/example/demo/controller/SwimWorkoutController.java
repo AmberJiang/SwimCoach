@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.SwimWorkout;
+import com.example.demo.repository.SwimWorkoutRepository;
+import com.example.demo.service.SwimWorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,17 +13,17 @@ import java.util.List;
 public class SwimWorkoutController {
 
     @Autowired
-    private SwimWorkoutRepository repository;
+    private SwimWorkoutService service;
 
     @PostMapping
     public SwimWorkout create(
             @RequestBody SwimWorkout workout) {
 
-        return repository.save(workout);
+        return service.create(workout);
     }
 
     @GetMapping
     public List<SwimWorkout> getAll() {
-        return repository.findAll();
+        return service.getAllWorkOuts();
     }
 }
